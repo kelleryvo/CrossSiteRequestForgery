@@ -1,0 +1,21 @@
+.stream-responsive video{
+  width: 100%    !important;
+  height: auto   !important;
+}
+
+.btn-margin{
+  margin-top: 8px;
+}
+
+.signin-container{
+  width: 80%;
+}
+
+.container{
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.error{
+  font-size: 18pt;
+}

@@ -1,0 +1,27 @@
+<html>
+  <% include partials/head.ejs %>
+  <body>
+    <div class="container signin-container">
+
+      <img src="assets/img/cinema_ticket.png" width="250px">
+
+      <form class="form-signin" method="POST">
+        <h2 class="form-signin-heading">Please register</h2>
+        <%- errors %>
+        <br>
+        <br>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" name = "username" class="form-control btn-margin" placeholder="Username" required autofocus>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name = "password" class="form-control btn-margin" placeholder="Password" required>
+        <label for="password_repeat" class="sr-only">Password</label>
+        <input type="password" id="password_repeat" name = "password_repeat" class="form-control btn-margin" placeholder="Repeat Password" required>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+        <button type="button" id="login" onclick="window.location='/login';" class="btn btn-sm btn-default btn-block">Sign In</button>
+      </form>
+
+    </div>
+  </body>
+</html>

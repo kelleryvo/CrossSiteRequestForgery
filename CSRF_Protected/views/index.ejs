@@ -1,0 +1,70 @@
+<html>
+<% include partials/head.ejs %>
+<body>
+    <% include partials/navigation.ejs %>
+    <div class='container'>
+      <div class="jumbotron">
+        <h1>StreamDream</h1>
+        <p>Your source for online video streaming.</p>
+        <p><a href="/library" class="btn btn-primary btn-lg">To the Library</a></p>
+      </div>
+
+      <h4>You are logged in as <b><%= session.username %>.</b></h4>
+
+      <h3>Live Chat</h3>
+      <div id='chat'>
+          <form id="messageForm">
+              <textarea class="form-control" id="message"></textarea>
+              <br>
+              <input type="submit" class ="btn btn-success" value="Send" />
+          </form>
+      </div>
+
+      <button type="button" id="register" onclick="window.location='/change_password';" class="btn btn-sm btn-default btn-block">Change Password</button>
+      
+    </div>
+
+    <script>
+        $(function(){
+            var socket = io.connect();
+            var $messageForm = $('#messageForm');
+            var $message = $('#message');
+
+            var $chat = $('#chat');
+
+            var $streamButton = $('#strm');
+
+            /*//Join the Account Room
+            socket.emit('join room', {username: '<%= session.username %>'});
+
+            socket.on('joined room', function(data){
+              console.log('Users in Room: ' + data.members);
+            });*/
+
+            $messageForm.submit(function(e){
+                e.preventDefault();
+                var msg = $message.val();
+                if(msg !== ''){
+                  socket.emit('send message', {username: '<%= session.username %>', msg: msg});
+                  $message.val('');
+                }
+            });
+
+            socket.on('new message', function(data){
+                $chat.append('<div class="well"><b>' + data.username + '</b>: ' + data.msg + '</div>');
+            });
+
+            /*function submitMessage(e){
+              if (e.keyCode == 13) {
+                e.preventDefault();
+                var msg = $message.val();
+                socket.emit('send message', {username: '<%= session.username %>', msg: msg});
+                $message.val('');
+              }
+            }*/
+
+        });
+
+    </script>
+</body>
+</html>

